@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chuck Norris Jokes</title>
+</head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rakkas&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="Static/Css/style.css">
+<body>
+  <h1>Generator of Chuck Norris Jokes</h1>
+  <div id="joke-container">
+    <button id="random-joke-btn">Get Random Joke</button>
+    <select id="category-select">
+      <option value="">Select a category</option>
+    </select>
+    <div class="result">
+    </div>
+  </div>
+  <script>
+    function getJokeByCategory(category) {
+      fetch(`https://api.chucknorris.io/jokes/random?category=${category}`)
+        .then(response => response.json())
+        .then(data => {
+          displayJoke(data.value);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+
+    function getRandomJoke() {
+      fetch('https://api.chucknorris.io/jokes/random')
+        .then(response => response.json())
+        .then(data => {
+          displayJoke(data.value);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+
+    function displayJoke(joke) {
+      const jokeContainer = document.querySelector('#joke-container .result');
+      jokeContainer.innerHTML = `<p>${joke}</p>`;
+    }
+
+    const randomJokeBtn = document.getElementById('random-joke-btn');
+    randomJokeBtn.addEventListener('click', getRandomJoke);
+
+    fetch('https://api.chucknorris.io/jokes/categories')
+      .then(response => response.json())
+      .then(data => {
+        const categorySelect = document.getElementById('category-select');
+        data.forEach(category => {
+          const option = document.createElement('option');
+          option.value = category;
+          option.text = category;
+          categorySelect.appendChild(option);
+        });
+
+        categorySelect.addEventListener('change', (event) => {
+          const selectedCategory = event.target.value;
+          if (selectedCategory) {
+            getJokeByCategory(selectedCategory);
+          }
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  </script>
+</body>

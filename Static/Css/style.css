@@ -1,0 +1,47 @@
+body {
+    font-family: 'Rakkas', cursive;
+    text-align: center; 
+    background-color: #f0f0f0; 
+    margin-bottom: 300px;
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+  }
+  
+  h1 {
+    color: #333; 
+    margin-top: 50px; 
+    
+  }
+  
+  #joke-container {
+    margin-top: 30px; 
+  }
+  
+  button {
+    background-color: #4CAF50; 
+    color: white; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    margin-right: 10px;
+  }
+  
+  button:hover {
+    background-color: #45a049; 
+  }
+  
+  select {
+    padding: 8px; 
+    border-radius: 5px; 
+  }
+  
+  .result {
+    background-color: #fff; 
+    padding: 20px; 
+    margin-top: 20px; 
+    border-radius: 5px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  }
+  
